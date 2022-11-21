@@ -13,7 +13,11 @@ npm i sveltering
 
 Usage:
 
-```js
+```html
+<script>
+  import Sveltering from "sveltering";
+</script>
+
 <Sveltering method="words">
   <div>This sentence has been Svelteringed!</div>
 </Sveltering>
