@@ -1,17 +1,23 @@
 {
   "name": "sveltering",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "author": "Erik Sachse <erik@napoleon.services> (https://napoleon.services/)",
   "repository": {
     "type": "git",
     "url": "https://github.com/eriksachse/sveltering"
   },
-  "homepage": "ttps://github.com/eriksachse/sveltering",
+  "homepage": "https://github.com/eriksachse/sveltering",
   "main": "index.js",
   "module": "index.js",
   "svelte": "index.js",
+  "keywords": [
+    "svelte",
+    "lettering",
+    "letteringjs"
+  ],
   "scripts": {
     "dev": "vite dev",
+    "vercel": "vite build",
     "build": "svelte-kit sync && svelte-package",
     "prepublishOnly": "echo 'Did you mean to publish `./package/`, instead of `./`?' && exit 1",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
