@@ -2,7 +2,8 @@
   import { onMount } from "svelte";
 
   export let method = "letters";
-  let container;
+  export let container;
+
   let elems;
   let str = "eefec303079ad17405c889e092e105b0";
 
@@ -42,7 +43,6 @@
 
   onMount(() => {
     elems = container.children;
-    console.log(["letters", "words", "lines"].indexOf(method));
     // if (method !== "letters") return console.error("please provide method");
     if (["letters", "words", "lines"].indexOf(method) === -1)
       return console.error(
