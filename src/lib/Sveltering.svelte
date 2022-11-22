@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { onMount } from "svelte";
 
   export let method = "letters";
@@ -7,7 +7,7 @@
   let elems;
   let str = "eefec303079ad17405c889e092e105b0";
 
-  let replaceBreaks = function (elem) {
+  let replaceBreaks = function (elem: any) {
     var r = document.createTextNode(str);
     Array.prototype.slice
       .call(elem.querySelectorAll("br"))
@@ -15,13 +15,28 @@
         elem.replaceChild(r.cloneNode(), br);
       });
   };
-  let wrap = function (elems, splitStr, className, after, breaks) {
-    for (let elem of elems) {
-      var original = elem.textContent;
-      if (breaks) {
-        replaceBreaks(elem);
+  let wrap = function (
+    elems: [],
+    splitStr: String,
+    className: String,
+    after: String,
+    breaks: Boolean
+  ) {
+    for (let elem of elems.childNodes) {
+      let elemtomodify;
+      if (elem.nodeName === "#text") {
+        let wrap = document.createElement("div");
+        wrap.innerHTML = elem.nodeValue.trim();
+        elem.replaceWith(wrap);
+        elemtomodify = wrap;
+      } else {
+        elemtomodify = elem;
       }
-      var text = elem.textContent
+      var original = elemtomodify.textContent;
+      if (breaks) {
+        replaceBreaks(elemtomodify);
+      }
+      var text = elemtomodify.textContent
         .split(splitStr)
         .map(function (item, index) {
           return (
@@ -35,25 +50,21 @@
           );
         })
         .join("");
-      elem.setAttribute("aria-label", original);
-      elem.innerHTML = text;
+      elemtomodify.setAttribute("aria-label", original);
+      elemtomodify.innerHTML = text;
     }
     return elems;
   };
 
   onMount(() => {
-    elems = container.children;
-    // if (method !== "letters") return console.error("please provide method");
+    // elems = container.children;
     if (["letters", "words", "lines"].indexOf(method) === -1)
       return console.error(
         "please provide correct Sveltering method. \n ['letters', 'words', 'lines']"
       );
-    if (method === "letters") wrap(elems, "", "char", "");
-    if (method === "words") wrap(elems, " ", "word", " ");
-    if (method === "lines") wrap(elems, str, "line", "", true);
-    for (let elem of elems) {
-      container.appendChild(elem);
-    }
+    if (method === "letters") wrap(container, "", "char", "");
+    if (method === "words") wrap(container, " ", "word", " ");
+    if (method === "lines") wrap(container, str, "line", "", true);
   });
 </script>
 
