@@ -2,7 +2,7 @@
   import { onMount } from "svelte";
 
   export let method = "letters";
-  export let container;
+  let container;
 
   let elems;
   let str = "eefec303079ad17405c889e092e105b0";
