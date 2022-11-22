@@ -32,6 +32,7 @@
       } else {
         elemtomodify = elem;
       }
+      console.log(elemtomodify.textContent);
       var original = elemtomodify.textContent;
       if (breaks) {
         replaceBreaks(elemtomodify);
@@ -41,6 +42,8 @@
         .map(function (item, index) {
           return (
             '<span class="' +
+            className +
+            " " +
             className +
             (index + 1) +
             '" aria-hidden="true">' +

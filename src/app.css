@@ -1,0 +1,19 @@
+@font-face {
+  font-family: "Work Sans Bold";
+  src: url("WorkSans-Bold.woff2");
+}
+@font-face {
+  font-family: "Work Sans Regular";
+  src: url("WorkSans-Regular.woff2");
+}
+html,
+body,
+#app {
+  margin: 0px;
+  height: 100%;
+  font-family: "Work Sans Regular";
+}
+
+.word {
+  transition: transform 0.4s ease;
+}
